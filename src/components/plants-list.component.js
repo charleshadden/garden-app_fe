@@ -1,21 +1,19 @@
 import React, { Component } from "react";
 import PlantsDataService from "../services/plants.service";
 import { Link } from "react-router-dom";
+import SearchBarComponent from "./search-bar.component";
 
 export default class PlantsList extends Component {
     constructor(props) {
         super(props);
-        this.onChangeSearchName = this.onChangeSearchName.bind(this);
         this.retrievePlants = this.retrievePlants.bind(this);
         this.refreshList = this.refreshList.bind(this);
         this.setActivePlant = this.setActivePlant.bind(this);
-        this.searchName = this.searchName.bind(this);
 
         this.state = {
             plants: [],
             currentPlant: null,
-            currentIndex: -1,
-            searchName: ""
+            currentIndex: -1
         };
     }
 
@@ -28,22 +26,14 @@ export default class PlantsList extends Component {
     componentDidMount() {
         this.retrievePlants();
     }
-
-    onChangeSearchName(e) {
-        const searchName = e.target.value;
-
-        this.setState({
-            searchName: searchName
-        });
-    }
-
+    
     retrievePlants() {
         PlantsDataService.getAll()
             .then(response => {
                 this.setState({
                     plants: response.data
                 });
-                console.log(response.data);
+                console.log("here",response.data);
             })
             .catch(e => {
                 console.log(e);
@@ -65,49 +55,12 @@ export default class PlantsList extends Component {
         });
     }
 
-    searchName() {
-        this.setState({
-            currentTutorial:null,
-            currentIndex: -1
-        });
-
-        PlantsDataService.findByName(this.state.searchName)
-            .then(response => {
-                this.setState({
-                    plants: response.data
-                });
-                console.log(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    }
-
     render() {
-        const { searchName, plants, currentPlant, currentIndex } = this.state;
-
+        const { plants, currentPlant, currentIndex } = this.state;
+        const { searchName } = this.props;
         return (
             <div className="list row">
-                <div className="col-md-8">
-                    <div className="input-group mb-3">
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Search by name"
-                            value={searchName}
-                            onChange={this.onChangeSearchName}
-                        />
-                        <div className="input-group-append">
-                            <button
-                                className="btn btn-outline-secondary"
-                                type="button"
-                                onClick={this.searchName}
-                            >
-                                Search
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <SearchBarComponent/>
                 <div className="col-md-6">
                     <h4>Plants List</h4>
                     <ul className="list-group">
