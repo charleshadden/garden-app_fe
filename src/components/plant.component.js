@@ -86,7 +86,7 @@ export default class PlantComponent extends Component {
             <div>
                 {currentPlant ? (
                     <div className="edit-form">
-                        <h4>Plant1</h4>
+                        <h4>Plant</h4>
                         <form>
                             <div className="form-group">
                                 <label htmlFor="plantName">Plant Name2</label>

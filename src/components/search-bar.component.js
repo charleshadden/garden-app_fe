@@ -43,7 +43,7 @@ export default class SearchBarComponent extends Component {
         const { searchName } = this.state;
         console.log("searchName",searchName)
         return(
-            <div className="col-md-8">
+            <div className="col-md-14">
                 <div className="input-group mb-3">
                     <input
                         type="text"
