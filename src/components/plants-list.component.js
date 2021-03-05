@@ -26,7 +26,7 @@ export default class PlantsList extends Component {
     componentDidMount() {
         this.retrievePlants();
     }
-    
+
     retrievePlants() {
         PlantsDataService.getAll()
             .then(response => {
@@ -57,12 +57,11 @@ export default class PlantsList extends Component {
 
     render() {
         const { plants, currentPlant, currentIndex } = this.state;
-        const { searchName } = this.props;
         return (
             <div className="list row">
-                <SearchBarComponent/>
                 <div className="col-md-6">
-                    <h4>Plants List</h4>
+                    <SearchBarComponent />
+                    <h4 id="mainHeader">Plants List</h4>
                     <ul className="list-group">
                         {plants &&
                         plants.map((plant, index) => (

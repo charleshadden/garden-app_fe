@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:ital,wght@1,300&display=swap');
+
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
 .list {
   text-align: left;
   max-width: 750px;
@@ -17,4 +23,8 @@
 .icon {
   width: 20px;
   height: 20px;
+}
+
+#mainHeader {
+  text-align: center;
 }
